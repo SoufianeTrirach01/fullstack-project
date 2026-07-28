@@ -1,0 +1,20 @@
+<header style="background: #1e293b; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; font-family: sans-serif;">
+  <h1 style="margin: 0; font-size: 24px;">Mon E-Shop</h1>
+  
+  <div style="display: flex; align-items: center; gap: 15px;">
+    <div style="background: #334155; padding: 10px 20px; border-radius: 20px; font-weight: bold;">
+      🛒 Panier : 
+      <span style="color: #06b6d4;">{{ cartService.totalQuantity() }}</span> articles | 
+      <span style="color: #10b981;">{{ cartService.totalPrice() | currency:'EUR' }}</span>
+    </div>
+
+    <button 
+      (click)="onCheckout()"
+      [disabled]="cartService.totalQuantity() === 0"
+      style="background: #10b981; color: white; border: none; padding: 10px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.2s;"
+      [style.opacity]="cartService.totalQuantity() === 0 ? '0.5' : '1'"
+      [style.cursor]="cartService.totalQuantity() === 0 ? 'not-allowed' : 'pointer'">
+      Valider ma commande
+    </button>
+  </div>
+</header>
