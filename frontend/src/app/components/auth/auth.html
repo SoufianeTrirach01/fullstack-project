@@ -1,0 +1,36 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>{{ isLoginMode() ? 'Connexion' : 'Créer un compte' }}</h2>
+
+    @if (errorMessage()) {
+      <div class="alert alert-danger">{{ errorMessage() }}</div>
+    }
+
+    <form (ngSubmit)="onSubmit()">
+      @if (!isLoginMode()) {
+        <div class="form-group">
+          <label>Nom complet</label>
+          <input type="text" [(ngModel)]="authData.name" name="name" required class="form-control">
+        </div>
+      }
+
+      <div class="form-group">
+        <label>Adresse Email</label>
+        <input type="email" [(ngModel)]="authData.email" name="email" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input type="password" [(ngModel)]="authData.password" name="password" required class="form-control">
+      </div>
+
+      <button type="submit" class="btn-primary">
+        {{ isLoginMode() ? 'Se connecter' : "S'inscrire" }}
+      </button>
+    </form>
+
+    <p class="toggle-text" (click)="toggleMode()">
+      {{ isLoginMode() ? "Nouveau ici ? Créez un compte." : "Déjà inscrit ? Connectez-vous." }}
+    </p>
+  </div>
+</div>
