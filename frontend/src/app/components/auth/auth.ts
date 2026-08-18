@@ -1,13 +1,14 @@
 import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { AuthService } from '../../services/auth-service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
-  imports: [],
-  templateUrl: './auth.html',
+imports: [CommonModule, FormsModule], // <-- Vérifie bien la présence de FormsModule ici  templateUrl: './auth.html',
   styleUrl: './auth.scss',
 })
-export class Auth {private authService = inject(AuthService);
+export class AuthComponent {private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
 
   isLoginMode = signal<boolean>(true); // Mode Connexion par défaut

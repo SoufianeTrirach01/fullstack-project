@@ -1,3 +1,17 @@
-<app-header></app-header>
-<app-product-list></app-product-list>
-<app-order-history></app-order-history>
+<!-- Si l'utilisateur est connecté, on lui montre l'application e-commerce -->
+@if (authService.currentUser()) {
+  
+  <app-header></app-header>
+  
+  <main class="container">
+    <app-product-list></app-product-list>
+    <hr>
+    <app-order-history></app-order-history>
+  </main>
+
+} @else {
+  
+  <!-- S'il n'est pas connecté, on le bloque sur l'écran de Login/Register -->
+  <app-auth></app-auth>
+
+}
