@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart';
 import { Order } from '../../services/order'; 
+import { AuthService } from '../../services/auth-service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -10,7 +11,8 @@ import { Order } from '../../services/order';
 })
 export class HeaderComponent {
   public cartService = inject(CartService);
-private orderService = inject(Order); // Utilise 'Order' ici aussi !  // On expose le service au HTML pour lire directement les Signals
+private orderService = inject(Order);
+public authService = inject(AuthService);
 
   onCheckout(): void {
     
@@ -26,5 +28,9 @@ private orderService = inject(Order); // Utilise 'Order' ici aussi !  // On expo
       }
     });
   }
+  logout(): void {
+    this.authService.logout();
+  }
+
 
 }
